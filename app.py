@@ -1,7 +1,9 @@
 from flask import Flask, Response
 import pandas as pd
 from authorizing import generate_authorization
+import os
 
+port_value = os.getenv("PORT")
 app = Flask(__name__)
 
 @app.route('/convert', methods=['GET'])
@@ -26,4 +28,4 @@ def convert_excel_to_csv():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=port_value)
