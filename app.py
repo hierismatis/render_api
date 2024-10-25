@@ -1,6 +1,6 @@
 from flask import Flask, Response
 import pandas as pd
-
+from authorizing import generate_authorization
 
 app = Flask(__name__)
 
@@ -21,6 +21,7 @@ def convert_excel_to_csv():
     csv_buffer.seek(0)
     
     # Return de CSV als een download
+    print(generate_authorization())
     return csv_buffer.getvalue()
 
 
