@@ -1,9 +1,8 @@
-import requests
 import base64
 import os
 
 # Haal de waarde van de omgevingsvariabelen op
-TENNANT = os.getenv('TENNANT')
+TENNANT = os.getenv('TENANT')
 USER = os.getenv('USER')
 
 
