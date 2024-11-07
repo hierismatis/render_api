@@ -22,3 +22,5 @@ def generate_authorization():
 
 if __name__ == '__main__':
     print(generate_authorization())
+    print(TENNANT)
+    print(USER)
