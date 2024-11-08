@@ -15,7 +15,7 @@ def get_contacts(category='contacts', fields='all_fields'):
 	response = requests.get(url, headers=authorization, params=params)
 
 	response_data = response.json()['data']
-
+	print(response_data)
 	contacts = pd.json_normalize(response_data)
 
 	if fields == 'all_fields':
@@ -31,14 +31,5 @@ def get_contacts(category='contacts', fields='all_fields'):
 
 	return return_data
 
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
-	print(get_contacts())
+	get_contacts(category='companies')

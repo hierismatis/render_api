@@ -7,8 +7,8 @@ import os
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
-def home(): 
-    return "<h1>He rens dikke sukkel</h1>"
+def home():     
+    return "<h1>He Pedro kk sukkeltje</h1>"
 
 @app.route('/contacts', methods=['GET'])
 def contact_data():
