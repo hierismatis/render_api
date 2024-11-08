@@ -6,6 +6,13 @@ import os
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def return_contacts():
+    return "He rens dikke sukkel ga eens gdansk boeken"
+
+if __name__ == '__main__':
+    app.run()
+
 @app.route('/convert', methods=['GET'])
 def return_contacts():
     contacts = get_contacts()
