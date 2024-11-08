@@ -13,7 +13,13 @@ def home():
 @app.route('/contacts', methods=['GET'])
 def contact_data():
     fields = request.args.get('fields', 'all_fields')
-    data = extract_data.get_contacts(fields=fields)
+    data = extract_data.get_contacts(category='contacts', fields=fields)
+    return data
+
+@app.route('/companies', methods=['GET'])
+def company_data():
+    fields = request.args.get('fields', 'all_fields')
+    data = extract_data.get_contacts(category='companies', fields=fields)
     return data
 
 if __name__ == '__main__':

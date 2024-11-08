@@ -3,13 +3,16 @@ from authorizing import generate_authorization
 import os
 import pandas as pd
 
-def get_contacts(fields='all_fields'):
+def get_contacts(category='contacts', fields='all_fields'):
 	authorization = generate_authorization()
 	params={'limit': 4000}
 
-	URL = 'https://api.tomtoday.com/api/contacts/categories/1/contacts'
+	url_dict = {'contacts': 'https://api.tomtoday.com/api/contacts/categories/1/contacts',
+		'companies': 'https://api.tomtoday.com/api/contacts/categories/2/contacts' }
 
-	response = requests.get(URL, headers=authorization, params=params)
+	url = url_dict[category]
+
+	response = requests.get(url, headers=authorization, params=params)
 
 	response_data = response.json()['data']
 
@@ -38,4 +41,4 @@ def get_contacts(fields='all_fields'):
 
 
 if __name__ == '__main__':
-	print(get_contacts()[['label', 'email']].to_csv())
+	print(get_contacts())
