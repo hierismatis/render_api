@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   title: Data API
   description: API for accessing contacts, companies, and units data.
@@ -8,6 +8,7 @@ servers:
 paths:
   /:
     get:
+      operationId: rootEndpoint
       summary: Root endpoint
       description: Returns a message indicating wrong endpoint usage.
       responses:
@@ -68,7 +69,7 @@ paths:
               description: attachment; filename=data.csv
   /units:
     get:
-      operationdId: getUnits
+      operationId: getUnits
       summary: Fetch units data
       description: Returns CSV file with real estate data, filtered by specified fields.
       parameters:
