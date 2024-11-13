@@ -20,6 +20,7 @@ paths:
               example: verkeerde endpoint
   /contacts:
     get:
+      operationId: getContacts
       summary: Fetch contacts data
       description: Returns CSV file with contact data, filtered by specified fields.
       parameters:
@@ -43,6 +44,7 @@ paths:
               description: attachment; filename=data.csv
   /companies:
     get:
+      operationId: getCompanies
       summary: Fetch companies data
       description: Returns CSV file with companies data, filtered by specified fields.
       parameters:
@@ -66,6 +68,7 @@ paths:
               description: attachment; filename=data.csv
   /units:
     get:
+      operationdId: getUnits
       summary: Fetch units data
       description: Returns CSV file with real estate data, filtered by specified fields.
       parameters:
