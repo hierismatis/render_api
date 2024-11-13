@@ -1,0 +1,78 @@
+swagger: '2.0'
+info:
+  version: "1.0.0"
+  title: "Data API"
+host: "https://hammerhead-app-8cym9.ondigitalocean.app"
+basePath: "/"
+schemes:
+  - "http"
+paths:
+  /:
+    get:
+      summary: "Root endpoint"
+      description: "Returns a message indicating wrong endpoint usage."
+      responses:
+        200:
+          description: "Successful message delivery"
+          examples:
+            text/plain: "verkeerde endpoint"
+
+  /contacts:
+    get:
+      summary: "Fetch contacts data"
+      description: "Returns CSV file with contact data, filtered by specified fields."
+      parameters:
+        - name: "fields"
+          in: "query"
+          description: "Comma-separated names of fields to include in the CSV. Possible fields are: id, label, first_name, last_name, email, phone_number. Default is all fields."
+          required: false
+          type: "string"
+      produces:
+        - "text/csv"
+      responses:
+        200:
+          description: "CSV data of contacts"
+          headers:
+            Content-Disposition:
+              type: "string"
+              description: "attachment; filename=data.csv"
+
+  /companies:
+    get:
+      summary: "Fetch companies data"
+      description: "Returns CSV file with companies data, filtered by specified fields."
+      parameters:
+        - name: "fields"
+          in: "query"
+          description: "Comma-separated names of fields to include in the CSV. Possible fields are: id, kvk_nummer, IBAN, label, email, phone_number. Default is all fields."
+          required: false
+          type: "string"
+      produces:
+        - "text/csv"
+      responses:
+        200:
+          description: "CSV data of companies"
+          headers:
+            Content-Disposition:
+              type: "string"
+              description: "attachment; filename=data.csv"
+
+  /units:
+    get:
+      summary: "Fetch units data"
+      description: "Returns CSV file with real estate data, filtered by specified fields."
+      parameters:
+        - name: "fields"
+          in: "query"
+          description: "Comma-separated names of fields to include in the CSV. Possible fields are: id, label, floor_id, unit_type_id, address, postal_code, city, country, start_date, end_date, active, rental_type, rent, service_costs, service_costs_downpayment, surface, status, available_from, surface_price_rent, metric, floor_label, floor, location_id, location_label, region. Default is all fields."
+          required: false
+          type: "string"
+      produces:
+        - "text/csv"
+      responses:
+        200:
+          description: "CSV data of real estate units"
+          headers:
+            Content-Disposition:
+              type: "string"
+              description: "attachment; filename=data.csv"

@@ -88,6 +88,5 @@ def get_units(fields='all_fields'):
 
 
 if __name__ == '__main__':
-	print(get_units())
+	print(get_contacts(category="companies"))
 
-	
