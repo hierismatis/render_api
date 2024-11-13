@@ -25,7 +25,7 @@ paths:
       parameters:
         - name: fields
           in: query
-          description: Comma-separated names of fields to include in the CSV. Possible fields are: id, label, first_name, last_name, email, phone_number. Default is all fields.
+          description: Comma-separated names of fields to include in the CSV. Possible fields are id, label, first_name, last_name, email, phone_number. Default is all fields.
           required: false
           schema:
             type: string
@@ -48,7 +48,7 @@ paths:
       parameters:
         - name: fields
           in: query
-          description: Comma-separated names of fields to include in the CSV. Possible fields are: id, kvk_nummer, IBAN, label, email, phone_number. Default is all fields.
+          description: Comma-separated names of fields to include in the CSV. Possible fields are id, kvk_nummer, IBAN, label, email, phone_number. Default is all fields.
           required: false
           schema:
             type: string
@@ -71,7 +71,7 @@ paths:
       parameters:
         - name: fields
           in: query
-          description: Comma-separated names of fields to include in the CSV. Possible fields are: id, label, floor_id, unit_type_id, address, postal_code, city, country, start_date, end_date, active, rental_type, rent, service_costs, service_costs_downpayment, surface, status, available_from, surface_price_rent, metric, floor_label, floor, location_id, location_label, region. Default is all fields.
+          description: Comma-separated names of fields to include in the CSV. Possible fields are id, label, floor_id, unit_type_id, address, postal_code, city, country, start_date, end_date, active, rental_type, rent, service_costs, service_costs_downpayment, surface, status, available_from, surface_price_rent, metric, floor_label, floor, location_id, location_label, region. Default is all fields.
           required: false
           schema:
             type: string
