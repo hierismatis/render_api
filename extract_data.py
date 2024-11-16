@@ -6,20 +6,19 @@ import pandas as pd
 def filter_by_field(df,fields):
 
 
-	if fields == 'all_fields':
+	if fields == []:
 		return_data = df.to_csv(index=False)
 
 	else:
-		fields_list = fields.split(',')
 
 		try: 
-			return_data =  df[fields_list].to_csv(index=False)
+			return_data =  df[fields].to_csv(index=False)
 		except KeyError:
 			return_data = "Error: dat veld bestaat niet in contacten"
 
 	return return_data
 
-def get_contacts(category='contacts', fields='all_fields'):
+def get_contacts(category='contacts', fields=[]):
 	authorization = generate_authorization()
 	params={'limit': 4000}
 

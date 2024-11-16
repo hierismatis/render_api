@@ -1,93 +1,152 @@
-openapi: 3.1.0
 info:
-  title: Data API
   description: API for accessing contacts, companies, and units data.
+  title: Data API
   version: 1.0.0
-servers:
-  - url: 'https://hammerhead-app-8cym9.ondigitalocean.app/'
+openapi: 3.1.0
 paths:
   /:
     get:
-      operationId: rootEndpoint
-      summary: Root endpoint
       description: Returns a message indicating wrong endpoint usage.
+      operationId: rootEndpoint
+      parameters:
+      - description: Specifies the media type of the resource.
+        in: header
+        name: Content-Type
+        required: true
+        schema:
+          example: application/json
+          type: string
       responses:
         '200':
-          description: Successful message delivery
           content:
             text/plain:
-              schema:
-                type: string
               example: verkeerde endpoint
-  /contacts:
-    get:
-      operationId: getContacts
-      summary: Fetch contacts data
-      description: Returns CSV file with contact data, filtered by specified fields.
-      parameters:
-        - name: fields
-          in: query
-          description: Comma-separated names of fields to include in the CSV. Possible fields are id, label, first_name, last_name, email, phone_number. Default is all fields.
-          required: false
-          schema:
-            type: string
-      responses:
-        '200':
-          description: CSV data of contacts
-          content:
-            text/csv:
               schema:
                 type: string
-          headers:
-            Content-Disposition:
-              schema:
-                type: string
-              description: attachment; filename=data.csv
+          description: Successful message delivery
+      summary: Root endpoint
   /companies:
     get:
-      operationId: getCompanies
-      summary: Fetch companies data
       description: Returns CSV file with companies data, filtered by specified fields.
+      operationId: getCompanies
       parameters:
-        - name: fields
-          in: query
-          description: Comma-separated names of fields to include in the CSV. Possible fields are id, kvk_nummer, IBAN, label, email, phone_number. Default is all fields.
-          required: false
-          schema:
-            type: string
+      - description: Specifies the media type of the resource.
+        in: header
+        name: Content-Type
+        required: true
+        schema:
+          example: application/json
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                fields:
+                  description: Array of field names to include in the CSV. Possible
+                    fields are id, kvk_nummer, IBAN, label, email, phone_number. Provide
+                    an array of fields. Default is all fields.
+                  items:
+                    type: string
+                  type: array
+              type: object
+        description: Request body containing the fields to filter
+        required: false
       responses:
         '200':
-          description: CSV data of companies
           content:
             text/csv:
               schema:
                 type: string
+          description: CSV data of companies
           headers:
             Content-Disposition:
+              description: attachment; filename=data.csv
               schema:
                 type: string
+      summary: Fetch companies data
+  /contacts:
+    get:
+      description: Returns CSV file with contact data, filtered by specified fields.
+      operationId: getContacts
+      parameters:
+      - description: Specifies the media type of the resource.
+        in: header
+        name: Content-Type
+        required: true
+        schema:
+          example: application/json
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                fields:
+                  description: Array of field names to include in the CSV. Possible
+                    fields are id, label, first_name, last_name, email, phone_number.
+                    Provide an array of fields. Default is all fields.
+                  items:
+                    type: string
+                  type: array
+              type: object
+        description: Request body containing the fields to filter
+        required: false
+      responses:
+        '200':
+          content:
+            text/csv:
+              schema:
+                type: string
+          description: CSV data of contacts
+          headers:
+            Content-Disposition:
               description: attachment; filename=data.csv
+              schema:
+                type: string
+      summary: Fetch contacts data
   /units:
     get:
-      operationId: getUnits
-      summary: Fetch units data
       description: Returns CSV file with real estate data, filtered by specified fields.
+      operationId: getUnits
       parameters:
-        - name: fields
-          in: query
-          description: Comma-separated names of fields to include in the CSV. Possible fields are id, label, floor_id, unit_type_id, address, postal_code, city, country, start_date, end_date, active, rental_type, rent, service_costs, service_costs_downpayment, surface, status, available_from, surface_price_rent, metric, floor_label, floor, location_id, location_label, region. Default is all fields.
-          required: false
-          schema:
-            type: string
+      - description: Specifies the media type of the resource.
+        in: header
+        name: Content-Type
+        required: true
+        schema:
+          example: application/json
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                fields:
+                  description: Array of field names to include in the CSV. Possible
+                    fields are id, label, floor_id, unit_type_id, address, postal_code,
+                    city, country, start_date, end_date, active, rental_type, rent,
+                    service_costs, service_costs_downpayment, surface, status, available_from,
+                    surface_price_rent, metric, floor_label, floor, location_id, location_label,
+                    region. Provide an array of fields. Default is all fields.
+                  items:
+                    type: string
+                  type: array
+              type: object
+        description: Request body containing the fields to filter
+        required: false
       responses:
         '200':
-          description: CSV data of real estate units
           content:
             text/csv:
               schema:
                 type: string
+          description: CSV data of real estate units
           headers:
             Content-Disposition:
+              description: attachment; filename=data.csv
               schema:
                 type: string
-              description: attachment; filename=data.csv
+      summary: Fetch units data
+servers:
+- url: https://hammerhead-app-8cym9.ondigitalocean.app/

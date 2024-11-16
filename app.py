@@ -2,7 +2,7 @@ from flask import Flask, Response, request
 import pandas as pd
 import extract_data
 import os
-
+import json
 
 app = Flask(__name__)
 
@@ -12,9 +12,8 @@ def home():
 
 @app.route('/contacts', methods=['GET'])
 def contact_data():
-    fields = request.args.get('fields', 'all_fields')
+    fields = request.get_json()['fields']
     data = extract_data.get_contacts(category='contacts', fields=fields)
-    
     response = Response(data, mimetype='text/csv')
     response.headers['Content-Disposition'] = 'attachment; filename=data.csv'
     return response
@@ -22,7 +21,7 @@ def contact_data():
 
 @app.route('/companies', methods=['GET'])
 def company_data():
-    fields = request.args.get('fields', 'all_fields')
+    fields = request.get_json()['fields']
     data = extract_data.get_contacts(category='companies', fields=fields)
     
     response = Response(data, mimetype='text/csv')
@@ -31,8 +30,8 @@ def company_data():
 
 @app.route('/units', methods=['GET'])
 def units_data():
-    fields = request.args.get('fields', 'all_fields')
-    data = extract_data.get_real_estate(fields=fields)
+    fields = request.get_json()['fields']
+    data = extract_data.get_units(fields=fields)
 
     response = Response(data, mimetype='text/csv')
     response.headers['Content-Disposition'] = 'attachment; filename=data.csv'
@@ -40,4 +39,4 @@ def units_data():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
