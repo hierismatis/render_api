@@ -25,7 +25,6 @@ def company_data():
     data = extract_data.get_contacts(category='companies', fields=fields)
     
     response = Response(data, mimetype='text/csv')
-    response.headers['Content-Disposition'] = 'attachment; filename=data.csv'
     return response
 
 @app.route('/units', methods=['GET'])
