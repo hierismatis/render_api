@@ -7,7 +7,8 @@ def filter_by_field(df,fields):
 
 
 	if fields == []:
-		return_data = df.to_csv(index=False)
+		return_data = df.to_dict(orient='records')
+		# return_data = df.to_csv(index=False)
 
 	else:
 

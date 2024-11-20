@@ -36,6 +36,13 @@ def units_data():
     response.headers['Content-Disposition'] = 'attachment; filename=data.csv'
     return response
 
+@app.route('/test', methods=['GET'])
+def test():
+    data = extract_data.get_contacts(category='companies')
+    
+    response = Response(json.dumps(data), status=200, mimetype='application/json')
+    return response
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -116,7 +116,7 @@ paths:
         required: true
         schema:
           example: application/json
-          type: string
+          type: string  
       requestBody:
         content:
           application/json:
